@@ -11,9 +11,9 @@ public class Contest {
     private Date createdAt;
     private Date updatedAt;
 
-    public Contest(Date createdAt, Date updatedAt) {
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Contest() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     @Id

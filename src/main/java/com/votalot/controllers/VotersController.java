@@ -1,10 +1,14 @@
 package com.votalot.controllers;
 
+import com.votalot.entities.Candidate;
 import com.votalot.entities.Voter;
 import com.votalot.services.VotersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -31,6 +35,12 @@ public class VotersController {
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
     public void destroy(@PathVariable int id) { this.service.destroy(id); }
+
+    @RequestMapping(path = {"/{id}/candidates"}, method = RequestMethod.GET)
+    public List<Candidate> findCandidates(@PathVariable int id) { return this.service.findCandidatesByVoterId(id); }
+
+    @RequestMapping(path = {"{voterId}/vote/{candidateId}"}, method = RequestMethod.GET)
+    public void voteForCandidates(@PathVariable int voterId, @PathVariable int candidateId) { this.service.voteForCandidate(voterId, candidateId); }
 
 
 }
